@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app='shopular'>
+	<head>
+		<title>Shopular</title>
+		
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		
+		<link href= "css/main.css" rel="stylesheet">					
+
+		<link href="https://fonts.googleapis.com/css?family=Galada|Roboto" rel="stylesheet">
+
+		<script src="https://use.fontawesome.com/64f6e46810.js"></script>	
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	</head>
+	<body>
+		<div class = "container-fluid">
+			<div class = "row rowTable">
+				<h2>Shopular</h2>
+				<div class = "col-sm-6 formData">
+				</div>
+				<div class = "col-sm-6 tableData">
+					<table ng-controller='TableController as table'>
+						<tr>
+							<th>Name</th>
+							<th>Price</th>
+							<th>Quantity</th>
+							<th>Color</th>
+						</tr>
+						<tr ng-repeat = "item in table.data">
+							<td>{{item.name}}</td>
+							<td>{{table.getTotalPrice(item.price,item.discount)}}<span ng-show = "table.isDiscounted(item.discount)"><img src = "images/sale.png"></td>
+							<td>{{item.quantity}}</td>
+							<td>{{item.color}}</td>
+						</tr>
+					</table>
+				</div>	
+			</div>	
+		</div>
+		<script src = "https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+		<script src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script src = "js/main.js"></script>
+	</body>
+</html>

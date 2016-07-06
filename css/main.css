@@ -1,0 +1,21 @@
+body h2 {
+  text-align: center;
+  font-family: 'Galada', cursive;
+  color: #EA5B4D; }
+
+body .tableData table {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 20px;
+  font-family: 'Roboto', sans-serif;
+  color: #505050; }
+  body .tableData table td, body .tableData table th {
+    border: 2px solid #38A3CC;
+    border-collapse: collapse;
+    padding: 5px; }
+  body .tableData table th {
+    text-align: center; }
+  body .tableData table td {
+    text-align: left; }
+    body .tableData table td img {
+      width: 20px; }
