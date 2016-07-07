@@ -1,32 +1,59 @@
 body {
-	h2 {
+	font-family: 'Roboto', sans-serif;
+	color: #505050;
+	h1 {
 		text-align: center;
 		font-family: 'Galada', cursive;
 		color: #EA5B4D;
 	}
-
+	.formData {
+		form {
+			width: 90%;
+			.ng-invalid { 
+				border: 2px solid red;
+			}
+		}
+	}
 	.tableData {
 
 		table {
-			width: 100%;
+			width: 90%;
 			margin: 0 auto;
 			margin-top: 20px;
-			font-family: 'Roboto', sans-serif;
-			color: #505050;
 			td, th {
 		    	border: 2px solid #38A3CC;
 		   	 	border-collapse: collapse;
 		   	 	padding: 5px;
-		   	 }
-		   	 th{
+		   	}
+		   	
+		   	th{
 		   	 	text-align: center;
 		   	 }
-		   	 td {
+		   	
+		   	td {
 		   	 	text-align: left;
 		   	 	img {
 		   	 		width: 20px;
 		   	 	}
-		   	 }	
+		   	 	.fa-pencil{
+		   	 		float: right;
+		   	 	}
+		   	 	.update {
+		   	 		input {
+		   	 			width: 70px;
+		   	 			margin: 0 auto;
+		   	 			display: block;
+		   	 		}
+		   	 		button{
+		   	 			width: 8px;
+		   	 			float: right;
+		   	 			margin-top: 4px;
+		   	 			.fa-pencil {
+							margin-right: -7px;
+		   	 			}
+		   	 		}
+		   	 	}
+		   	}	
 		}
 	}
 }	

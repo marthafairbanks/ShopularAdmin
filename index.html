@@ -14,23 +14,45 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	</head>
 	<body>
-		<div class = "container-fluid">
+		<div class = "container-fluid" ng-controller='ShopController as shop'>
 			<div class = "row rowTable">
-				<h2>Shopular</h2>
+				<h1>Shopular</h1>
 				<div class = "col-sm-6 formData">
+					<form novalidate name = "productInput" ng-submit='shop.update()'>
+						<fieldset class="form-group">
+					    	<label for="formName">Product Name:</label>
+					    	<input type="text" class="form-control formName" id="formName" placeholder="" ng-model='shop.form.name' required>
+					    	<label for="formPrice">Product Price:</label>
+					    	<input type="number" class="form-control formPrice" id="formPrice" placeholder="" ng-model='shop.form.price' required>
+					    	<label for="formQuantity">Product Quantity:</label>
+					    	<input type="number" class="form-control formQuantity" id="formQuantity" placeholder="" ng-model='shop.form.quantity' required>
+					    	<label for="formColor">Product Color:</label>
+					    	<input type="text" class="form-control formColor" id="formColor" placeholder="" ng-model='shop.form.color' required>
+					    	<label for="formDiscount">Product Discount:</label>
+					    	<input type="number" class="form-control formDiscount" id="formDiscount" placeholder="" ng-model='shop.form.discount' required>
+					  	</fieldset>
+					    <button type="submit" class="btn btn-primary" >Submit</button>
+					</form>  
 				</div>
 				<div class = "col-sm-6 tableData">
-					<table ng-controller='TableController as table'>
+					<table>
 						<tr>
 							<th>Name</th>
 							<th>Price</th>
 							<th>Quantity</th>
 							<th>Color</th>
 						</tr>
-						<tr ng-repeat = "item in table.data">
+						<tr ng-repeat = "item in shop.data | orderBy: 'quantity'">
 							<td>{{item.name}}</td>
-							<td>{{table.getTotalPrice(item.price,item.discount)}}<span ng-show = "table.isDiscounted(item.discount)"><img src = "images/sale.png"></td>
-							<td>{{item.quantity}}</td>
+							<td>{{shop.getTotalPrice(item.price,item.discount) | currency}}<span ng-show = "shop.isDiscounted(item.discount)"><img src = "images/sale.png"></span></td>
+							<td>
+								{{item.quantity}}
+								<a href="#" ng-show="!showUpdate" ng-click="newQuantity = item.quantity; showUpdate = true"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+           						<div ng-show="showUpdate" class = "update">
+           							<input type="number" ng-model="getNewQuantity" class="form-control" value = {{item.quantity}}>
+           							<button type="submit" class="btn btn-primary" ng-click="shop.updateQuantity(item, getNewQuantity); showUpdate = false;"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+           						</div>
+           					</td>
 							<td>{{item.color}}</td>
 						</tr>
 					</table>

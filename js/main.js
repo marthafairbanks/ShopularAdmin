@@ -3,9 +3,10 @@
     'use strict';
     angular
         .module('shopular', [])
-        .controller('TableController', function table() {
-        	this.tax = 0.0575;
-            this.data = 
+        .controller('ShopController', function shop() {
+        	var vm = this;
+        	vm.tax = 0.0575;
+            vm.data = 
 				[
 				  { "id": 2957, "name": "widget", "price": 32, "quantity": 203, "color": "red", "discount": 31 },
 				  { "id": 89274, "name": "golf club", "price": 98, "quantity": 10, "color": "black", "discount": 0 },
@@ -21,11 +22,31 @@
 				  { "id": 683, "name": "pillow", "price": 27, "quantity": 10, "color": "black", "discount": 12 }
 				];
 
-			this.getTotalPrice = function(price,discount) {
-      			return (price - discount) * this.tax + (price - discount);	
+			vm.update = function update() {
+				
+				function assignId(min, max) {
+				  return Math.floor(Math.random() * (max - min + 1)) + min;
+				}
+
+				var formData = { 
+					"id": assignId(0,100000), 
+					"name": vm.form.name, 
+					"price": vm.form.price, 
+					"quantity": vm.form.quantity, 
+					"color": vm.form.color, 
+					"discount": vm.form.discount,
+				};
+
+				vm.data.push(formData);
+				vm.form = [];
+
+			};
+
+			vm.getTotalPrice = function(price,discount) {
+      			return (price - discount) * vm.tax + (price - discount);	
         	};
 			
-			this.isDiscounted = function(discount) {
+			vm.isDiscounted = function(discount) {
 				if (discount !== 0) {
 					return true;	
 				}
@@ -33,6 +54,12 @@
 					return false;
         		}
         	};
+
+        	  vm.updateQuantity = function(item, newQuantity){
+        	  	console.log(item, newQuantity);
+     			var index = vm.data.indexOf(item);
+     			vm.data[index].quantity = newQuantity;
+ 			};
 
         });
 })();
