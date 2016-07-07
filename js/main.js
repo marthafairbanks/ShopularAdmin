@@ -21,7 +21,8 @@
 				  { "id": 533, "name": "eggs", "price": 5, "quantity": 12, "color": "brown", "discount": 1 },
 				  { "id": 683, "name": "pillow", "price": 27, "quantity": 10, "color": "black", "discount": 12 }
 				];
-
+			// takes the new info from the form and adds it to the array, 
+			//also assigns a random id & clears the form
 			vm.update = function update() {
 				
 				function assignId(min, max) {
@@ -42,10 +43,12 @@
 
 			};
 
+			//calculates the total price taking into account discount and tax
 			vm.getTotalPrice = function(price,discount) {
       			return (price - discount) * vm.tax + (price - discount);	
         	};
 			
+			//shows the sale img if there is a discount
 			vm.isDiscounted = function(discount) {
 				if (discount !== 0) {
 					return true;	
@@ -55,8 +58,10 @@
         		}
         	};
 
-        	  vm.updateQuantity = function(item, newQuantity){
-        	  	console.log(item, newQuantity);
+        	//allows user to update quantity in the browser which updates 
+        	//the array
+        	vm.updateQuantity = function(item, newQuantity){
+        		console.log(item, newQuantity);
      			var index = vm.data.indexOf(item);
      			vm.data[index].quantity = newQuantity;
  			};
